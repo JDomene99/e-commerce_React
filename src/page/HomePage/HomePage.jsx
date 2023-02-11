@@ -33,8 +33,8 @@ function HomePage() {
 
   return (
     <div className="">
-      <section className="bg-contain bg-no-repeat mx">
-        <img src={homePage} alt="" />
+      <section className="bg-contain bg-no-repeat ">
+        <img src={homePage} alt="" className="w-11/12 mx-auto"/>
       </section>
 
       <section className="text-center w-10/12 mx-auto pb-20">

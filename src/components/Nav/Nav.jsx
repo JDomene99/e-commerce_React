@@ -190,7 +190,7 @@ function Nav() {
         </nav>
       ) : (
         //Desktop Nav
-        <ul className="list-none md:text-xl flex flex-row justify-between xs:gap-20 2xl:px-10 py-5 md:px-10">
+        <ul className="list-none md:text-xl flex flex-row justify-between xs:gap-20 2xl:px-20 py-5 md:px-10">
           <div className="flex flex-row flex-wrap gap-x-10">
             <li>
               <Link to="/">Home</Link>
