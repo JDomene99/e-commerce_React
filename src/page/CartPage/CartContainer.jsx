@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CartItem from "./CartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../state/cart";

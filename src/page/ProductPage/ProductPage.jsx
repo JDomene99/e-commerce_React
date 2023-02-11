@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import NavProducts from "./NavProducts";
 import Aside from "./Aside";
 import { Outlet  } from "react-router";
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { setSize, setOrder } from "../../state/products";
-import { useMediaQuery } from "@mui/material";
 
 function ProductPage() {
   
