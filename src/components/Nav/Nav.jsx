@@ -12,13 +12,21 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+
 function Nav() {
-  const isNonMobileScreens = useMediaQuery("(min-width: 769px)");
+
   const dispatch = useDispatch();
   const [list, setToggleList] = useState(false);
   const isAuth = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const [toggleButton, setToggleButton] = useState(true);
+
+  const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -26,271 +34,233 @@ function Nav() {
 
   return (
     <>
-      {!isNonMobileScreens ? (
-        //Mobile
-        <nav className="bg-white border-gray-200 px-4 justify-between  py-2.5 rounded dark:bg-gray-900">
-          <div className="flex flex-row flex-wrap items-center justify-between px-4">
-            <button
-              type="button"
-              className=" text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              onClick={() => {
-                setToggleButton(!toggleButton);
-              }}
-            >
-              <svg
-                className="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+      <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-5 text-black">
+        <ul className="hidden md:flex md:gap-10">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+
+          <li>
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button>Product</Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </button>
-
-            {toggleButton ? (
-              ""
-            ) : (
-              <ul className="z-50 absolute top-0 left-0 list-none flex flex-col pl-5 w-full pb-3 text-xl border border-gray-100 rounded-lg bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <button
-                    type="button"
-                    className="p-2 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    onClick={() => {
-                      setToggleButton(!toggleButton);
-                    }}
-                  >
-                    <svg
-                      className="w-6 h-6"
-                      aria-hidden="true"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                  </button>
-                </li>
-
-                <li className="flex flex-row ">
-                  <HomeIcon className="m-3 " />{" "}
-                  <Link
-                    className="block py-2 pl-3 pr-4 text-black focus:text-black border-b border-gray-100"
-                    to="/"
-                  >
-                    Home{" "}
-                  </Link>
-                </li>
-                <li className="flex flex-col ">
-                  <div className="flex flex-row">
-                    <ShoppingBagIcon className="m-3 " />
-                    <button
-                      className="flex flex-col"
-                      onClick={() => {
-                        setToggleList(!list);
-                      }}
-                    >
-                      <h3 className="block py-2 pl-3 pr-4 text-black focus:text-black border-b border-gray-100">
-                        Product
-                      </h3>
-                    </button>
+                <Menu.Items className="absolute left-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          className={classNames(
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
+                          )}
+                          to="/products/all"
+                        >
+                          All Products
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          className={classNames(
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
+                          )}
+                          to="/products/shoes"
+                        >
+                          Shoes
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          className={classNames(
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
+                          )}
+                          to="/products/clothes"
+                        >
+                          Clothes
+                        </Link>
+                      )}
+                    </Menu.Item>
                   </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
 
-                  {list ? (
-                    <div className="flex flex-col pl-14">
-                      <Link
-                        to="/products/all"
-                        onClick={() => {
-                          dispatch(setSize(null));
-                          dispatch(setOrder(null));
-                        }}
-                      >
-                        All Products
-                      </Link>
-
-                      <Link
-                        to="/products/shoes"
-                        onClick={() => {
-                          dispatch(setSize(null));
-                          dispatch(setOrder(null));
-                        }}
-                      >
-                        Shoes
-                      </Link>
-
-                      <Link
-                        to="/products/clothes"
-                        onClick={() => {
-                          dispatch(setSize(null));
-                          dispatch(setOrder(null));
-                        }}
-                      >
-                        Clothes
-                      </Link>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </li>
-                <li className="flex flex-row  w-12/12">
-                  <ImportContactsIcon className="m-3 " />
-                  <Link
-                    className="block py-2 pl-3 pr-4 text-black focus:text-white border-b border-gray-100 "
-                    to="/contact"
-                  >
-                    Contact
-                  </Link>
-                </li>
-                {isAuth.user == null ? (
-                  <div className="flex flex-row gap-6 mt-6">
-                    <li>
-                      <Link to="/login">
-                        <Button variant="contained" color="inherit">
-                          Login
-                        </Button>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/register">
-                        <Button variant="contained">Register</Button>
-                      </Link>
-                    </li>
-                  </div>
-                ) : (
-                  <li className="my-5">
-                    <Link to="/">
-                      <Button
-                        variant="contained"
-                        onClick={() => {
-                          dispatch(setLogout());
-                          dispatch(clearCart());
-                          setToggleButton(!toggleButton);
-                        }}
-                      >
-                        logOut
-                      </Button>
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            )}
+        <div className="hidden md:flex  flex-row flex-wrap gap-x-6 list-none">
+          <li>
             <Link to="/cart">
               <ShoppingCartIcon />
               {cart.totalCount}
             </Link>
-          </div>
-        </nav>
-      ) : (
-        //Desktop Nav
-        <ul className="list-none md:text-xl flex flex-row justify-between xs:gap-20 2xl:px-20 py-5 md:px-10">
-          <div className="flex flex-row flex-wrap gap-x-10">
+          </li>
+
+          {isAuth.user != null ? (
             <li>
-              <Link to="/">Home</Link>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  dispatch(setLogout());
+                  setToggleButton(!toggleButton);
+                }}
+              >
+                logOut
+              </Button>
             </li>
-
-            <li>
-              <Menu as="div" className="relative inline-block text-left">
-                <div>
-                  <Menu.Button>Product</Menu.Button>
-                </div>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute left-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                            to="/products/all"
-                          >
-                            All Products
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                            to="/products/shoes"
-                          >
-                            Shoes
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                            to="/products/clothes"
-                          >
-                            Clothes
-                          </Link>
-                        )}
-                      </Menu.Item>
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-            </li>
-
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </div>
-
-          <div className="flex flex-row flex-wrap gap-x-6">
-            <li>
-              <Link to="/cart">
-                <ShoppingCartIcon />
-                {cart.totalCount}
-              </Link>
-            </li>
-
-            {isAuth.user != null ? (
+          ) : (
+            <div className="flex flex-row gap-6">
               <li>
+                <Link to="/login">
+                  <Button variant="contained" color="inherit">
+                    Login
+                  </Button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/register">
+                  <Button variant="contained">Register</Button>
+                </Link>
+              </li>
+            </div>
+          )}
+        </div>
+
+        <div className="block md:hidden">
+        <Link to="/cart">
+              <ShoppingCartIcon />
+              {cart.totalCount}
+            </Link>
+        </div>
+
+
+        <div onClick={handleNav} className="block md:hidden">
+          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        </div>
+        <ul
+          className={
+            nav
+              ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-white ease-in-out duration-500 z-50"
+              : "ease-in-out duration-1000 fixed left-[-100%]"
+          }
+        >
+          <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4"></h1>
+
+          <li className="p-3 border-b border-gray-600 flex flex-row">
+            <HomeIcon className="m-3 " />{" "}
+            <Link
+              className="block py-2 pl-3 pr-4 text-black focus:text-black"
+              to="/"
+            >
+              Home{" "}
+            </Link>
+          </li>
+
+          <li className="p-4 border-b border-gray-600">
+            <div className="flex flex-row">
+              <ShoppingBagIcon className="m-3 " />
+              <button
+                className="flex flex-col"
+                onClick={() => {
+                  setToggleList(!list);
+                }}
+              >
+                <h3 className="block py-2 pl-3 pr-4 text-black focus:text-black">
+                  Product
+                </h3>
+              </button>
+            </div>
+
+            {list ? (
+              <ul className="flex flex-col pl-14">
+                <li>
+                  <Link
+                    className=""
+                    to="/products/all"
+                    onClick={() => {
+                      dispatch(setSize(null));
+                      dispatch(setOrder(null));
+                    }}
+                  >
+                    All Products
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/products/shoes"
+                    onClick={() => {
+                      dispatch(setSize(null));
+                      dispatch(setOrder(null));
+                    }}
+                  >
+                    Shoes
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/products/clothes"
+                    onClick={() => {
+                      dispatch(setSize(null));
+                      dispatch(setOrder(null));
+                    }}
+                  >
+                    Clothes
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              ""
+            )}
+          </li>
+          <li className="p-4 border-b border-gray-600 flex flex-row">
+            <ImportContactsIcon className="m-3 " />
+            <Link
+              className="block py-2 pl-3 pr-4 text-black focus:text-white"
+              to="/contact"
+            >
+              Contact
+            </Link>
+          </li>
+
+          {isAuth.user != null ? (
+              <li className="pt-4">
                 <Button
                   variant="contained"
                   onClick={() => {
                     dispatch(setLogout());
-                    setToggleButton(!toggleButton);
                   }}
                 >
                   logOut
                 </Button>
               </li>
             ) : (
-              <div className="flex flex-row gap-6">
+              <div className="flex flex-row gap-6 pt-4 pl-8">
                 <li>
                   <Link to="/login">
                     <Button variant="contained" color="inherit">
@@ -305,9 +275,8 @@ function Nav() {
                 </li>
               </div>
             )}
-          </div>
         </ul>
-      )}
+      </div>
     </>
   );
 }
