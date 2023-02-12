@@ -25,11 +25,11 @@ function App() {
         <Route path="/cart" element={<CartContainer />} />
         <Route path="/product/:id" element={<ProductView />} />
 
-        <Route path="/products" element={<ProductPage />} >
-          <Route path="all" element={<AllProducts />} />
-          <Route path="clothes" element={<AllProducts />} />
-          <Route path="shoes" element={<AllProducts />} />
-        </Route>
+        <Route path="/products" element={<ProductPage />} />
+          <Route path="/products/all" element={<AllProducts />} />
+          <Route path="/products/clothes" element={<AllProducts />} />
+          <Route path="/products/shoes" element={<AllProducts />} />
+        
         
       </Routes>
       <Footer/>

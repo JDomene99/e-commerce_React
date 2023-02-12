@@ -1,5 +1,5 @@
-const api = 'https://ecommerce-api-5qsx.onrender.com'
-// const api = '${api}'
+const api = "https://ecommerce-api-5qsx.onrender.com";
+//  const api = 'http://localhost:4000'
 export const getProductsSorter = async (sort) => {
   const response = await fetch(`${api}/products/sort/${sort}`);
   const data = await response.json();

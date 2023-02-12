@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../../state/user";
 import { clearCart } from "../../state/cart";
@@ -34,7 +33,7 @@ function Nav() {
 
   return (
     <>
-      <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-5 text-black">
+      <div className="flex justify-between items-center h-24 mx-auto lg:px-20 md:px-14 xs:px-10 text-black">
         <ul className="hidden md:flex md:gap-10">
           <li>
             <Link to="/">Home</Link>
@@ -126,6 +125,7 @@ function Nav() {
                 variant="contained"
                 onClick={() => {
                   dispatch(setLogout());
+                  dispatch(clearCart());
                   setToggleButton(!toggleButton);
                 }}
               >
@@ -254,6 +254,7 @@ function Nav() {
                   variant="contained"
                   onClick={() => {
                     dispatch(setLogout());
+                    dispatch(clearCart());
                   }}
                 >
                   logOut

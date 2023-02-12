@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Aside from "./Aside";
-import { Outlet  } from "react-router";
+import React, { useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { setSize, setOrder } from "../../state/products";
+import AllProducts from "./AllProducts";
 
 function ProductPage() {
   
@@ -20,8 +19,7 @@ function ProductPage() {
  
   return (
     <main className="flex flex-row flex-wrap mx-10">
-      <Aside type={product}/>
-      <Outlet context={{ data: product , size : size.size, order : size.order}} />
+      <AllProducts  />
     </main>
   );
 }
