@@ -5,37 +5,37 @@ function Footer() {
     <footer className="bg-stone-900 py-4 flex xs:flex-col sm:flex-row sm:text-center">
       <ul className="text-white font-bold 2xl:w-6/12 xs:w-full 2xl:text-center">
         <li>
-          <a target="_self" href="https://www.nike.com/es/tarjetas-de-regalo">
+          <a target="_self" href="#">
             TARJETAS DE REGALO
           </a>
         </li>
         <li>
-          <a target="_self" href="https://www.nike.com/es/retail">
+          <a target="_self" href="#">
             BUSCAR UNA TIENDA
           </a>
         </li>
         <li>
-          <a target="_self" href="https://www.nike.com/es/historias">
+          <a target="_self" href="#">
             NIKE JOURNAL
           </a>
         </li>
         <li>
-          <a target="_self" href="https://www.nike.com/es/inscripcion">
+          <a target="_self" href="#">
             HAZTE MEMBER
           </a>
         </li>
         <li>
-          <a target="_self" href="https://www.nike.com/es/student-discount">
+          <a target="_self" href="#">
             DESCUENTO PARA ESTUDIANTES
           </a>
         </li>
         <li>
-          <a target="_self" href="#site-feedback">
+          <a target="_self" href="#">
             COMENTARIOS
           </a>
         </li>
         <li>
-          <a target="_self" href="https://www.nike.com/es/codigo-promocional">
+          <a target="_self" href="#">
             CÓDIGOS PROMOCIONALES
           </a>
         </li>
@@ -43,7 +43,7 @@ function Footer() {
 
       <ul className="flex xs:flex-row 2xl:w-6/12 xs:w-full flex-wrap py-4 gap-4">
         <li>
-          <a target="_blank" title="Twitter" href="https://twitter.com/Nike">
+          <a target="_blank" title="Twitter" href="#">
             <svg
               className="fill-slate-400"
               width="30px"
@@ -56,7 +56,7 @@ function Footer() {
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://www.facebook.com/nike">
+          <a target="_blank" href="#">
             <svg
               className="fill-slate-400"
               width="30px"
@@ -69,7 +69,7 @@ function Footer() {
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://www.youtube.com/user/nike">
+          <a target="_blank" href="#">
             <svg
               className="fill-slate-400"
               width="30px"
@@ -82,7 +82,7 @@ function Footer() {
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://instagram.com/nike">
+          <a target="_blank" href="#">
             <svg
               className="fill-slate-400"
               width="30px"
