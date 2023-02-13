@@ -10,8 +10,7 @@ import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { Squash as Hamburger } from "hamburger-react";
 
 function Nav() {
 
@@ -22,10 +21,12 @@ function Nav() {
   const [toggleButton, setToggleButton] = useState(true);
 
   const [nav, setNav] = useState(false);
-
+  const [isOpen, setOpen] = useState(false);
   const handleNav = () => {
     setNav(!nav);
   };
+
+  
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -159,8 +160,8 @@ function Nav() {
 
 
         <div onClick={handleNav} className="block md:hidden">
-          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-        </div>
+        <Hamburger toggled={isOpen} toggle={setOpen} />
+      </div>
         <ul
           className={
             nav
